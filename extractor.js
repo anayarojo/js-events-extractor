@@ -36,12 +36,12 @@ var Extractor = (function(){
 
         var children = element.children();
 
-        if(element[0].EventListeners != undefined)
+        if(getEventListeners(element) != undefined && !isEmpty(getEventListeners(element)))
         {
             result.push({
                 element: element,
                 selector: element.getPath(),
-                events: element[0].EventListeners
+                events: getEventListeners(element)
             });
         }
 
@@ -78,6 +78,14 @@ var Extractor = (function(){
     
         return path;
     };
+
+    function isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
     return obj;
 
